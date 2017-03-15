@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "0.0.19",
+    "@kadira/react-native-storybook": "^2.0.0",
+    "concurrently": "^3.4.0",
     "jest-expo": "^0.2.1",
-    "react-test-renderer": "~15.4.0",
-    "@kadira/react-native-storybook": "^2.0.0"
+    "react-native-scripts": "0.0.19",
+    "react-test-renderer": "~15.4.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
+    "start": "concurrently --kill-others \"storybook start -p 7007\" \"react-native-scripts start\"",
     "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "storybook": "storybook start -p 7007"
+    "android": "concurrently --kill-others \"storybook start -p 7007\" \"react-native-scripts android\"",
+    "ios": "concurrently --kill-others \"storybook start -p 7007\" \"react-native-scripts ios\"",
+    "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "jest": {
     "preset": "jest-expo"
